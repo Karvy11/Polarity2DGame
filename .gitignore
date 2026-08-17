@@ -55,6 +55,12 @@ sysinfo.txt
 /.utmp/
 /*_BurstDebugInformation_DoNotShip/
 
+# Test runner leftovers
+/[Aa]ssets/[Rr]esources/PerformanceTestRun*.json
+/[Aa]ssets/[Rr]esources/PerformanceTestRun*.json.meta
+/[Aa]ssets/[Ss]creenshots/
+/[Aa]ssets/[Ss]creenshots.meta
+
 # Builds
 *.apk
 *.aab
