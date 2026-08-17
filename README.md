@@ -8,6 +8,15 @@ each other out and disappear. That one idea is the whole game.
 Made with Unity 6.3 (6000.3.8f1), URP, portrait.
 
 
+## Video and download
+
+[![Polarity gameplay](https://img.youtube.com/vi/NY0n5fTynJs/hqdefault.jpg)](https://youtube.com/shorts/NY0n5fTynJs)
+
+Click the thumbnail to watch a short gameplay clip on YouTube.
+
+Android build: [Polarity.apk](https://github.com/Karvy11/Polarity2DGame/releases/download/Apk/Polarity.apk) (36 MB)
+
+
 ## How to play
 
 Two rules:
