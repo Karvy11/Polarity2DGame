@@ -198,3 +198,6 @@ already in the code, so adding audio needs no code changes.
 
 Each script has a single line at the top saying what it is, and no other comments. The reasoning
 behind the design is in this file rather than scattered through the source.
+
+I used an AI assistant to write and iterate on the code faster. The game concept, the rules, the
+architecture and the design decisions are mine.
