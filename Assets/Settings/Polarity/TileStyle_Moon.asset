@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd03ba1d5073ac24d9e760d862a981e2, type: 3}
+  m_Name: TileStyle_Moon
+  m_EditorClassIdentifier: Polarity.Presentation::Polarity.Presentation.TileStyle
+  type: 2
+  body: {r: 0.48235294, g: 0.42352942, b: 1, a: 1}
+  mark: {r: 0.7411765, g: 0.7058824, b: 1, a: 1}
+  flash: {r: 0.7411765, g: 0.7058824, b: 1, a: 1}
+  markSprite: {fileID: 21300000, guid: 0778300534976fa4db38b7043bdb5b1e, type: 3}
+  markScale: 0.42
+  castShadow: 1

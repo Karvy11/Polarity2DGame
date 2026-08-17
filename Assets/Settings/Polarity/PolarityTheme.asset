@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 937fad4b044ad274ea53ae2a23ba0a8b, type: 3}
+  m_Name: PolarityTheme
+  m_EditorClassIdentifier: Polarity.Presentation::Polarity.Presentation.PolarityTheme
+  background: {r: 0.043, g: 0.063, b: 0.149, a: 1}
+  boardWell: {r: 0.078, g: 0.106, b: 0.227, a: 1}
+  cellEmpty: {r: 0.106, g: 0.137, b: 0.314, a: 1}
+  scrim: {r: 0.043, g: 0.063, b: 0.149, a: 0.88}
+  shadow: {r: 0, g: 0, b: 0, a: 0.35}
+  textPrimary: {r: 0.933, g: 0.945, b: 1, a: 1}
+  textMuted: {r: 0.529, g: 0.573, b: 0.753, a: 1}
+  accent: {r: 0.184, g: 0.878, b: 0.769, a: 1}
+  danger: {r: 1, g: 0.361, b: 0.478, a: 1}
+  boardPadding: 26
+  cellGap: 0.1
+  tileInset: 0.06
+  slideDuration: 0.22
+  impactDuration: 0.16
+  popDuration: 0.26
+  spawnDuration: 0.32
+  spawnStagger: 0.015
+  uiFadeDuration: 0.25
+  scoreCountDuration: 0.4
+  lowMovesWarning: 3
+  rejectNudge: 0.16

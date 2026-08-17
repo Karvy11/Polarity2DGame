@@ -1,0 +1,21 @@
+{
+    "name": "Polarity.Presentation",
+    "rootNamespace": "Polarity.Presentation",
+    "references": [
+        "Polarity.Core",
+        "Polarity.Input",
+        "Unity.InputSystem",
+        "DOTween.Modules",
+        "Unity.TextMeshPro",
+        "UnityEngine.UI"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
