@@ -10,11 +10,13 @@ namespace Polarity.Presentation
     public sealed class GameController : MonoBehaviour
     {
         [Header("Board setup")]
-        [SerializeField, Range(3, 10)] private int boardWidth = 6;
+        [SerializeField, Range(3, 10)] private int boardWidth = 5;
         [SerializeField, Range(3, 12)] private int boardHeight = 6;
-        [SerializeField, Range(1, 30)] private int pairCount = 10;
-        [SerializeField, Range(0, 12)] private int neutronCount = 3;
-        [SerializeField, Range(1, 60)] private int moveBudget = 15;
+        [SerializeField, Range(1, 30)] private int pairCount = 5;
+        [SerializeField, Range(0, 12)] private int neutronCount = 2;
+
+        [Tooltip("Spare moves on top of the shortest possible clear. Higher is easier.")]
+        [SerializeField, Range(0, 20)] private int moveSlack = 6;
 
         [Tooltip("Leave at 0 for a different board every run. Set a value to reproduce one.")]
         [SerializeField] private int fixedSeed;
@@ -47,6 +49,7 @@ namespace Polarity.Presentation
             hudView.UndoRequested += OnUndo;
             hudView.RestartRequested += OnRestart;
             overlayView.RestartRequested += OnRestart;
+            overlayView.UndoRequested += OnUndo;
         }
 
         private void Start()
@@ -68,13 +71,17 @@ namespace Polarity.Presentation
                 hudView.RestartRequested -= OnRestart;
             }
 
-            if (overlayView != null) overlayView.RestartRequested -= OnRestart;
+            if (overlayView != null)
+            {
+                overlayView.RestartRequested -= OnRestart;
+                overlayView.UndoRequested -= OnUndo;
+            }
         }
 
         private GameConfig BuildConfig()
         {
             int seed = fixedSeed != 0 ? fixedSeed : Random.Range(1, int.MaxValue);
-            return new GameConfig(boardWidth, boardHeight, pairCount, neutronCount, moveBudget, seed);
+            return new GameConfig(boardWidth, boardHeight, pairCount, neutronCount, moveSlack, seed);
         }
 
         private void OnSwiped(Direction direction)
@@ -155,8 +162,10 @@ namespace Polarity.Presentation
                 screenShake.Shake(comboShakeStrength * 1.4f, 0.5f);
             }
 
+            bool deadEnd = _session.IsDeadPosition;
+
             DOVirtual.DelayedCall(resultDelay,
-                () => overlayView.Show(won, _session.Score, _session.MovesUsed));
+                () => overlayView.Show(won, deadEnd, _session.Score, _session.MovesUsed));
         }
     }
 }

@@ -25,6 +25,17 @@ move back, so you can experiment freely.
 Suns and moons always start in equal numbers, since a sun can only leave the board together with a
 moon.
 
+Every board you get is guaranteed to be clearable - the generator won't hand you one until it has
+actually found a solution for it. The move budget is set from that solution too, so you always have
+enough moves to win plus several spare.
+
+There is one thing to watch out for, and the game will tell you when it happens. If you strand the
+last sun and moon so that they share neither a row nor a column, they can never reach each other
+again, because a vertical swipe keeps tiles in their columns and a horizontal one keeps them in their
+rows. When you make a move that kills the board like that, you get a "no way through" message
+straight away with an undo button on it, rather than being left to burn your remaining moves finding
+out. Undo and take a different line and the board is still winnable.
+
 The trick to the game is that swiping up or down eventually sorts every column into suns at the top
 and moons at the bottom, and after that nothing else happens on that axis. You have to swipe sideways
 to mix the columns up again before vertical swipes are useful. Going back and forth between the two
@@ -127,6 +138,24 @@ after every column has been worked out, so the result doesn't depend on which co
 first.
 
 
+## Making sure boards are fair
+
+Random placement on its own produces a lot of boards that can never be cleared, and it isn't obvious
+from looking at them - they have legal moves at every step, they just cycle forever. Measuring it, on
+a 5x5 board about two thirds of the ways you can end up with a final sun and moon are permanently
+stuck.
+
+So the generator doesn't trust a random layout. It scatters the tiles, then runs a search that
+actually tries to clear the board, and only accepts the layout if it finds a solution. The search is
+an iterative deepening walk over positions, using the real move code and undoing as it backtracks, so
+there's no second copy of the rules to get out of step. Positions it has already exhausted are
+remembered so it doesn't explore them twice.
+
+The same search runs after each move, limited to the moves you have left. If it can prove there is no
+clear from where you are, the game says so immediately instead of letting you play on. It only
+reports this when the search finishes properly - if it runs out of its node budget it says nothing
+and play continues, so the game never ends on a guess.
+
 ## How undo works
 
 It doesn't save copies of the board. It saves what changed, a bit like writing down a chess move
@@ -146,9 +175,13 @@ the spot where they died.
 
 ## Changing things
 
-Board size, number of tiles, move budget and the random seed are all on the `GameController`
-component on the `Game` object, so you can try a 4x8 board or a different move count without touching
-code. The board resizes itself to fit.
+Board size, number of tiles, move slack and the random seed are all on the `GameController` component
+on the `Game` object, so you can try a 4x8 board or a different difficulty without touching code. The
+board resizes itself to fit.
+
+Move slack is the difficulty dial. The budget is worked out as the shortest possible solution for
+that particular board plus the slack, so raising it makes the game more forgiving without ever making
+a board unwinnable. Default is 5x6 with 5 pairs, 2 neutrons and 6 spare moves.
 
 Colours, spacing and animation speeds are in `Assets/Settings/Polarity/PolarityTheme.asset`. Each
 tile type's colour and symbol is in its own `TileStyle` asset next to it. The tile itself is

@@ -17,21 +17,26 @@ namespace Polarity.Core
         public readonly int PairCount;
 
         public readonly int NeutronCount;
-        public readonly int MoveBudget;
+
+        // Spare moves on top of the shortest solution the generator found. This is
+        // the difficulty dial: the budget is always enough to win, plus room to
+        // make mistakes.
+        public readonly int MoveSlack;
+
         public readonly int Seed;
 
-        public GameConfig(int width, int height, int pairCount, int neutronCount, int moveBudget, int seed)
+        public GameConfig(int width, int height, int pairCount, int neutronCount, int moveSlack, int seed)
         {
             Width = width;
             Height = height;
             PairCount = pairCount;
             NeutronCount = neutronCount;
-            MoveBudget = moveBudget;
+            MoveSlack = moveSlack;
             Seed = seed;
         }
 
         public static GameConfig Default => new GameConfig(
-            width: 6, height: 6, pairCount: 10, neutronCount: 3, moveBudget: 15, seed: 0);
+            width: 5, height: 6, pairCount: 5, neutronCount: 2, moveSlack: 6, seed: 0);
     }
 
     public static class ScoreRules
